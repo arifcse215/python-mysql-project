@@ -82,12 +82,68 @@ def searchByName():
 
     print()
 
+def update_data():
+    print()
+    print("1. Update Name")
+    print("2. Update Age")
+    print("3. Update City")
+    print("0. Update Deny")
+
+    num = int(input("Select Option: "))
+
+    if num == 1:
+        s_id = int(input("Student ID: "))
+        new_name = input("New Name: ")
+
+        sql = "update student_info set name = %s where id = %s"
+        val = (new_name, s_id)
+
+        try:
+            cur.execute(sql, val)
+            conn.commit()
+            print("Update Successfull.")
+        except Exception as e:
+            print(e)
+            conn.rollback()
+    elif num == 2:
+        s_id  = int(input("Student ID: "))
+        new_age = int(input("New Age: "))
+
+        sql = "update student_info set age = %s where id = %s"
+        val = (new_age, s_id)
+
+        try:
+            cur.execute(sql, val)
+            conn.commit()
+            print("update Successfull.")
+        except Exception as e:
+            print(e)
+            conn.rollback()
+    elif num == 3:
+        s_id = int(input("Student ID: "))
+        new_city = input("New City: ")
+
+        sql = "update student_info set city = %s where id =%s"
+        val = (new_city, s_id)
+
+        try:
+            cur.execute(sql, val)
+            conn.commit()
+            print("Update Successfull.")
+        except Exception as e:
+            print(e)
+            conn.rollback()
+    elif num == 0:
+        return 0
+    
+
 while True:
     print("Selec Option\n")
     print("\t1. Add Student")
     print("\t2. View All Students")
     print("\t3. Search by ID")
     print("\t4. Search by Name")
+    print("\t5. Update Student")
     print("\t0 to Exit")
     print()
     try:
@@ -108,6 +164,8 @@ while True:
         searchById()
     elif number == 4:
         searchByName()
+    elif number == 5:
+        update_data()
     else:
         print("Press correct number")
         print()
