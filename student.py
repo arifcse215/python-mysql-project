@@ -9,6 +9,18 @@ conn = mysql.connector.connect(
 )
 cur = conn.cursor()
 
+# Create table.
+# cur.execute(
+#     """
+#     create table if not exists student_info(
+#     id int auto_increment primary key,
+#     name varchar(50),
+#     age int check(age > 0),
+#     city varchar(30)
+#     )
+#     """
+# )
+
 def add_student():
     sql = "insert into student_info(name, age, city) values(%s, %s, %s)"
     name = input("Name: ")
