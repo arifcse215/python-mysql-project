@@ -135,6 +135,18 @@ def update_data():
             conn.rollback()
     elif num == 0:
         return 0
+
+def delete_data():
+    s_id = int(input("Enter ID: "))
+    sql = "delete from student_info where id = %s"
+    val = (s_id, )
+    try:
+        cur.execute(sql, val)
+        conn.commit()
+        print("Delete Successfully")
+    except Exception as e:
+        print(e)
+        conn.rollback()
     
 
 while True:
@@ -144,6 +156,7 @@ while True:
     print("\t3. Search by ID")
     print("\t4. Search by Name")
     print("\t5. Update Student")
+    print("\t6. Delete Student")
     print("\t0 to Exit")
     print()
     try:
@@ -166,6 +179,8 @@ while True:
         searchByName()
     elif number == 5:
         update_data()
+    elif number == 6:
+        delete_data()
     else:
         print("Press correct number")
         print()
